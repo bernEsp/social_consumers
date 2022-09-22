@@ -35,4 +35,13 @@ class InstagramConsumerTest < ActiveJob::TestCase
     assert_not(res)
   end
 
+  test 'store response in instagram post' do
+    assert_difference ->{ InstagramPost.count }, 5 do
+      stub_get = stub_request(:get, "https://takehome.io/instagram").to_return(
+        body: '[{"username":"hipster1","picture":"food"},{"username":"hipster2","picture":"coffee"},{"username":"hipster3","picture":"coffee"},{"username":"hipster4","picture":"food"},{"username":"hipster5","picture":"this one is of a cat"}]'
+      )
+      InstagramConsumerJob.perform_now
+    end
+  end
+
 end

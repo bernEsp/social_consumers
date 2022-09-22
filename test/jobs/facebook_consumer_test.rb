@@ -36,4 +36,14 @@ class FacebookConsumerTest < ActiveJob::TestCase
     assert_not(res)
   end
 
+  test 'store response in facebook post' do
+    assert_difference ->{ FacebookPost.count }, 2 do
+      stub_get = stub_request(:get, "https://takehome.io/facebook").to_return(
+        body: '[{"name":"Some Friend","status":"Here some photos of my holiday. Look how much more fun Im having than you are!"},
+        {"name":"Drama Pig","status":"I am in a hospital. I will not tell you anything about why I am here."}]'
+      )
+      FacebookConsumerJob.perform_now
+    end
+  end
+
 end

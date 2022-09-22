@@ -35,4 +35,13 @@ class TwitterConsumerTest < ActiveJob::TestCase
     assert_not(res)
   end
 
+  test 'stores tweets in TweetPost' do
+    assert_difference ->{ TwitterPost.count }, 2 do
+      stub_get = stub_request(:get, "https://takehome.io/twitter").to_return(
+        body: '[{"username":"@GuyEndoreKaiser","tweet":"If you live to be 100, you should make up some fake reason why, just to mess with people... like claim you ate a pinecone every single day."},{"username":"@mikeleffingwell","tweet":"STOP TELLING ME YOUR NEWBORNS WEIGHT AND LENGTH I DONT KNOW WHAT TO DO WITH THAT INFORMATION."}]'
+      )
+      TwitterConsumerJob.perform_now
+    end
+  end
+
 end
