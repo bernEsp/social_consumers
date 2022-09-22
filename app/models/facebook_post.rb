@@ -1,4 +1,4 @@
 class FacebookPost < ApplicationRecord
-  include Post
+  validates :name, presence: true
   validates :status, presence: true
 end
