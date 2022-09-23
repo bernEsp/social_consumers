@@ -1,21 +1,11 @@
 require "active_support/concern"
 require 'net/http'
+require_relative './consumer/timeout'
+require_relative './consumer/invalid'
 
 
 module Consumer
   extend ActiveSupport::Concern
-
-  class Timeout < StandardError
-    def message
-      'Consumer Timeout'
-    end
-  end
-
-  class Invalid < StandardError
-    def message
-      'Consumer invalid response'
-    end
-  end
 
   included do
     retry_on Net::OpenTimeout, Consumer::Timeout, attempts: 3

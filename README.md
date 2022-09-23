@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This stadium goods test. It reports on json dashboard `localhost:3000`
+the twitter, instagram, and facebook posts.
 
-Things you may want to cover:
 
-* Ruby version
+In order to run server you have to run the server but before schedule task to
+collect social network information
 
-* System dependencies
+1- Schedule consumer
+`bin/schedule`
 
-* Configuration
+2. Run rails server
+`bundle exec rails s`
 
-* Database creation
+3. Open another tab and run the sidekiq process
+`bundle exec sidekiq`
 
-* Database initialization
+Now you can visit `http://localhost:3000` and get the JSON response with
+following data:
 
-* How to run the test suite
+* twitter
+* Facebook
+* Instagramm
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+### Test
 
-* ...
+`bundle exec rails test`
