@@ -7,7 +7,7 @@ class TwitterConsumerJob < ApplicationJob
   end
 
   def store(json_response)
-    TwitterPost.create(
+    TwitterPost.create!(
       json_response
     )
   end
