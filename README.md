@@ -33,3 +33,9 @@ following data:
 ### Test
 
 `bundle exec rails test`
+
+### Stop schedule job
+run `bin/cleanschedule`
+
+### Fix Cron in MacOs
+https://dccxi.com/posts/crontab-not-working-catalina/#:~:text=Aug%206%2C%202019-,If%20Any%20of%20Your%20Crontab%20Tasks%20No%20Longer%20Works%20on,lists%20located%20at%20System%20Preferences.
